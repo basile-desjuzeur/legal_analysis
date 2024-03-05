@@ -1,0 +1,28 @@
+name: Lint Notebooks
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.x
+
+    - name: Install dependencies
+      run: |
+        python -m venv venv_legal
+        source venv_legal/Scripts/activate
+        pip install flake8 isort nbqa
+
+    - name: Lint notebooks
+      run: |
+        nbqa lint --nbqa-config=config/nbqa.yaml .
+        flake8 --config=config/setup.cfg .
+        isort --check-only --diff --settings=config/.isort.cfg .

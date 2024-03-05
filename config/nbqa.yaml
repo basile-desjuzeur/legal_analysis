@@ -1,0 +1,6 @@
+format:
+  disable: false
+  tool: black
+linter:
+  disable: false
+  args: ["--exclude=.ipynb_checkpoints"]
