@@ -18,7 +18,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m venv venv_legal
-        source venv_legal/Scripts/activate
+        source venv_legal/bin/activate
         pip install flake8 isort nbqa
 
     - name: Lint notebooks
